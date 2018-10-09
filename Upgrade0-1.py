@@ -1,7 +1,7 @@
 import os
 import platform
 import http.client
-# 
+#function to push upgrades to endpoints that are reachable by L3
 def pushUpgrade(clientIp, serverIp):
 	conn = http.client.HTTPConnection(clientIp)
 	payload = "<Command>\n\t<SystemUnit>\n\t\t<SoftwareUpgrade>\n\t\t\t<URL>\"http://"+serverIp+"/s52030ce8_3_4.pkg\"</URL>\n\t\t</SoftwareUpgrade>\n\t</SystemUnit>\n</Command>"
@@ -16,6 +16,7 @@ def pushUpgrade(clientIp, serverIp):
 	data = res.read()
 	print(data.decode("utf-8"))
 
+#function to ping the machine to test connectivity.
 def ping(address):
 	giveFeedback = False
 	if platform.system()== "Windows":
@@ -28,6 +29,7 @@ def ping(address):
 	else:
 		return False
 
+#function to test API connectivity by moving the camera
 def resetCam(address):
 	conn = http.client.HTTPConnection(address)
 
@@ -47,6 +49,7 @@ def resetCam(address):
 
 	print(data.decode("utf-8"))
 
+#test address for local codec
 testaddy = "192.168.1.52"
 
 
