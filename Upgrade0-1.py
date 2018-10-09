@@ -1,10 +1,10 @@
 import os
 import platform
 import http.client
-
-def pushUpgrade(address):
-	conn = http.client.HTTPConnection("192.168.1.52")
-	payload = "<Command>\n\t<SystemUnit>\n\t\t<SoftwareUpgrade>\n\t\t\t<URL>\"http://192.168.1.49/s52030ce8_3_4.pkg\"</URL>\n\t\t</SoftwareUpgrade>\n\t</SystemUnit>\n</Command>"
+# 
+def pushUpgrade(clientIp, serverIp):
+	conn = http.client.HTTPConnection(clientIp)
+	payload = "<Command>\n\t<SystemUnit>\n\t\t<SoftwareUpgrade>\n\t\t\t<URL>\"http://"+serverIp+"/s52030ce8_3_4.pkg\"</URL>\n\t\t</SoftwareUpgrade>\n\t</SystemUnit>\n</Command>"
 	headers = {
 	    'content-type': "text/xml",
 	    'cache-control': "no-cache",
